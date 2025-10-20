@@ -1,6 +1,6 @@
 services:
   flask-app:
-    build: /app/server-upload
+    build: /app/server-upload/app-upload
     container_name: upload-app
     volumes:
       - /app/provisioning:/app/provisioning
