@@ -1,0 +1,8 @@
+services:
+  flask-app:
+    build: /app/server-upload
+    container_name: upload-app
+    volumes:
+      - /app/provisioning:/app/provisioning
+    expose:
+      - "5000"
