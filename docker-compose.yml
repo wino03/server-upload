@@ -1,8 +1,21 @@
 services:
   flask-app:
-    build: /app/server-upload/app-upload
+    build: ./app-upload
     container_name: upload-app
     volumes:
-      - /app/provisioning:/app/provisioning
+      - /app/provisioning:/uploads
     expose:
       - "5000"
+
+  nginx:
+    image: nginx:latest
+    container_name: nginx-proxy-upload
+    ports:
+      - "8089:80"
+      - "8443:443"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./nginx/ssl:/etc/nginx/ssl:ro
+      - /app/provisioning:/uploads
+    depends_on:
+      - flask-app

@@ -50,5 +50,4 @@ def home():
     return {'status': 'OK', 'message': 'Flask HTTPS server with auth'}
  
 if __name__ == '__main__':
-    context = ('/app/server-upload/app-upload/ssl/server.crt', '/app/server-upload/app-upload/ssl/server.key')
-    app.run(host='0.0.0.0', port=5000, ssl_context=context)
+    app.run(host='0.0.0.0', port=5000)
