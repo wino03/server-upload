@@ -1,1 +1,3 @@
-openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout app/ssl/server.key -out app/ssl/server.crt
+mkdir -p app/ssl nginx/ssl
+openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout app/ssl/server.key -out app/ssl/server.crt -subj "/C=ID/ST=Jakarta/L=Jakarta/O=MyCompany/OU=Dev/CN=localhost"
+openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout nginx/ssl/server.key -out nginx/ssl/server.crt -subj "/C=ID/ST=Jakarta/L=Jakarta/O=MyCompany/OU=Dev/CN=localhost"
