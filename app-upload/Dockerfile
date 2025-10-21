@@ -6,7 +6,7 @@ COPY app.py /app
  
 RUN pip install flask bcrypt
  
-VOLUME ["/app/provisioning"]
+VOLUME ["/uploads"]
  
 EXPOSE 5000
  
