@@ -5,7 +5,7 @@ import base64
  
 app = Flask(__name__)
  
-UPLOAD_FOLDER = '/app/provisioning'
+UPLOAD_FOLDER = '/uploads'
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
  
 # --- User database (contoh hardcoded, bisa pakai DB nanti)
@@ -30,12 +30,12 @@ def check_auth(auth_header):
  
 @app.before_request
 def require_auth():
-    if request.path == "/app":
+    if request.path == "/":
         return  # allow health check
     if not check_auth(request.headers.get("Authorization")):
         return {"error": "Unauthorized"}, 401, {"WWW-Authenticate": 'Basic realm="Login Required"'}
  
-@app.route('/app/provisioning', methods=['POST'])
+@app.route('/upload', methods=['POST'])
 def upload_file():
     file = request.files.get('file')
     if not file:
@@ -45,7 +45,7 @@ def upload_file():
     file.save(path)
     return {'message': 'File uploaded', 'filename': file.filename}
  
-@app.route('/app')
+@app.route('/')
 def home():
     return {'status': 'OK', 'message': 'Flask HTTPS server with auth'}
  
